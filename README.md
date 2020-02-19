@@ -21,8 +21,8 @@ is gc log file used as test case.
 python MultiGCTimeUnion.py 
 ```
 ## Development Plan
-visualizing one JVM gc time in one axis while multiple JVM gc time sharing same time scale just like this
+visualizing one JVM gc time in one axis while multiple JVM gc time sharing same time scale just like this<br>
 jvm 1 gc|----    ----    ---- <br>
 jvm 1 gc|   -----    -----    <br>
 jvm 1 gc|  ---   ---   -----   --- <br>
-        |------------------------------> time
+----------------------------------------> time
