@@ -23,6 +23,6 @@ python MultiGCTimeUnion.py
 ## Development Plan
 visualizing one JVM gc time in one axis while multiple JVM gc time sharing same time scale just like this<br>
 jvm 1 gc|----&ensp;    ----   &ensp; ---- <br>
-jvm 3 gc|   -----  &ensp;  -----    <br>
+jvm 2 gc|   -----  &ensp;  -----    <br>
 jvm 3 gc|  ---  &ensp; --- &ensp;  ----- &ensp;  --- <br>
 ----------------------------------------> time
