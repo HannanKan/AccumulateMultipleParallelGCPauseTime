@@ -25,7 +25,7 @@ def get_gc_intervals_from_file(file):
         duration_ms=int(float(line[line.index("real")+5:line.rfind("secs")])*1000000)
         duration_ms=timedelta(microseconds=duration_ms)
         gc_interval_1.append((start,start+duration_ms))
-
+    print("print parsing interval of file: "+file)
     for x in gc_interval_1:
         print(x[0],x[1])
     return gc_interval_1
@@ -63,7 +63,7 @@ def merge2gc_intervals(l1,l2):
         if is_intersected:
             ##merge
             ## contain
-            if pre[1]>cur[1] or pre[1]==cur[1]:
+            if (pre[1]>cur[1] or pre[1]==cur[1]) :
                 l_merge.remove(cur)
             else:##intersected
                 item_inserted=(pre[0],cur[1])
@@ -77,17 +77,28 @@ def merge2gc_intervals(l1,l2):
 ##returnee: accumulative time from intervals
 def accumulate_intervals(intervals):
     acc=timedelta() ##initial with 0
-    for e in intervals:
-        acc=e[1]-e[0]
+    for i,e in enumerate(intervals):
+        dur=e[1]-e[0]
+        acc=acc+dur
+        #print("after adding interval "+str(i+1)+" result is",acc)
     return acc
 
-file_index=['1','2','3']
+file_index=['0','1','2']
 interval=[]
 for i in file_index:
-    tmp=get_gc_intervals_from_file("stdout-"+i)
+    ##tmp=get_gc_intervals_from_file("stdout-"+i)
+    tmp=get_gc_intervals_from_file("./"+i+"/stdout")
     interval=merge2gc_intervals(interval,tmp)
 
+
+import sys
+
+sys.stdout.write("wall clock time of multiple gc is ")
 print(accumulate_intervals(interval))
+
+sys.stdout.write("i.e. ")
+sys.stdout.write(str(accumulate_intervals(interval).total_seconds()))
+print(" seconds")
 
 
 
